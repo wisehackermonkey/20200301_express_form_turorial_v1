@@ -15,10 +15,13 @@ const PORT = 3000
 const app = express()
 
 app.use(express.static("web"))
+//needed to turn a <input ...name="username" ..../> into req.body.username
+
 app.use(bodyParser.json())
 
 const signup = (req,res)=>{
     console.count("form")
+    console.log(`form request: ${JSON.stringify(req.body)}`)
     console.log(`form request: ${req.body.username}`)
     res.send({ result:"success"})
 }

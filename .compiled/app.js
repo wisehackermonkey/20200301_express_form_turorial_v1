@@ -24,10 +24,13 @@ var PORT = 3000; // express_form_turorial_v1
 var app = (0, _express2.default)();
 
 app.use(_express2.default.static("web"));
+//needed to turn a <input ...name="username" ..../> into req.body.username
+
 app.use(_bodyParser2.default.json());
 
 var signup = function signup(req, res) {
     console.count("form");
+    console.log('form request: ' + JSON.stringify(req.body));
     console.log('form request: ' + req.body.username);
     res.send({ result: "success" });
 };
