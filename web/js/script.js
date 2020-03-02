@@ -2,6 +2,12 @@
 //using form using the fetch api in javascript
 //20200301
 //by wisemonkey
+
+function ShowToastMessage() {
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
 window.onload = function() {
 
     const API_URL = "/api/signup";
@@ -22,7 +28,7 @@ window.onload = function() {
       const header = { "Content-Type": "application/json" };
       const container = document.getElementById("signupformcontainer");
     
-      fetch(API_URL, { method: "post", body, header })
+      fetch(API_URL, { method: "POST", body:body, headers:header })
         .then(resp => {
           if (resp.status < 200 || resp.status >= 300) {
             throw new Error(`Request failed with status ${resp.status}`);
@@ -30,11 +36,15 @@ window.onload = function() {
           return resp.json();
         })
         .then(json => {
-            container.innerHTML = "<b> Account created successfully</b>"
+            // container.innerHTML = "<b> Account created successfully</b>"
+            console.log(" Account created successfully")
+            ShowToastMessage()
         })
         .catch(error => {
             container.innerHTML = `<b> A problem occured with signin you up, please try again</b>`
         })
     });
+
+    
     
 }
